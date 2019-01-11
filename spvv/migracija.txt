@@ -1,0 +1,5 @@
+update spvvz set [datum roðenja] = null where len( [datum roðenja]) <= 5
+
+insert into vodici (ime, prezime, email, telefon, datumrodjenja, velicinamajice, licencado, brojznacke, izvor, napomena, primjedba, ulica)
+select  ime, prezime, [e-mail], telefon,[datum roðenja], majica, [licenca do kraja], [broj znaèke], [izvor podataka], napomene, primjedba, adresa from spvvz
+

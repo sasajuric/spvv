@@ -1,0 +1,210 @@
+﻿<%@ Master Language="C#" %>
+
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" style="height: 100%">
+<head runat="server">
+    <title>Stanica planinarskih vodiča Varaždin</title>
+    <style>
+        body
+        {
+            margin: 0px;
+            font-family: Calibri, Tahoma, Verdana, Arial;
+            cursor: default;
+        }
+        .grid
+        {
+            background-color: white;
+            border: 1px solid gray;
+            border-collapse: collapse;
+            font-family: Calibri, Tahoma, Verdana, Arial;
+            color: black;
+            font-size: 0.9em;
+            cursor: default;
+        }
+        .header th
+        {
+            padding : 1px; 
+            color: white; 
+            background: #4f81bd;
+            border: none;
+            border-left: 1px solid gray; 
+            border-top: 1px solid gray;
+            border-right: 1px solid gray;
+            padding: 10px;
+        }
+        .grid td
+        {
+            padding: 1px; 
+            border: none;
+            border-left: solid 1px gray;
+            border-right: 1px solid gray;
+            padding: 10px;
+        }
+        .row
+        {
+            background: #F9F9F9;
+        }
+        .row_no_hover
+        {
+            background: #F9F9F9;
+        }
+        .selectedrow
+        {
+            color: black!important;
+            background: #feee8e!important;
+        }
+        .selectedrow:hover
+        {
+            color: black!important;
+            background: #feee8e!important;
+        }
+        .row:hover
+        {
+            background: #E2E2E2;
+            color: black;
+        }
+        .altrow
+        {
+            background: #f2f2f2; 
+        }
+        .altrow_no_hover
+        {
+            background: #f2f2f2; 
+        }
+        .altrow:hover
+        {
+            background: #E2E2E2;
+            color: black;
+        }
+        h1
+        {
+            font-size: 1.5em;
+        }
+        h2
+        {
+            font-size: 1em;
+        }
+        img.action
+        {
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+        img.pager
+        {
+            vertical-align: middle;
+        }
+        button
+        {
+            margin-right: 2px;
+        }
+        .menu
+        {
+            color: white;
+            background: #0094ff;
+            text-decoration: none;            
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            border: none;
+        }
+        .menu:hover
+        {
+            background-color: #30B4FF;            
+        }
+        input[type=text]
+        {
+            border: 1px solid gray;
+            border-radius: 5px;
+            padding: 5px;
+        }
+        input[type=password]
+        {
+            border: 1px solid gray;
+            border-radius: 5px;
+            padding: 5px;
+        }
+        input[type=button]
+        {
+             padding: 10px;
+        }
+        button
+        {
+             padding: 10px;
+        }
+        select
+        {
+            border: 1px solid gray;
+            border-radius: 5px;
+            padding: 5px;
+        }
+    </style>
+    <asp:ContentPlaceHolder id="head" runat="server" />
+</head>
+<body style="height: 100%">
+    <form id="form1" runat="server" style="height: 100%">
+        <table style="border-collapse: collapse; height: 100%; width: 100%">
+            <tr>
+                <td id="menu" style="width: 250px; height: 100%; vertical-align: top; background: #0094ff; padding: 5px; color: white">
+                    <div style="text-align: center"><img src="img/vs.png"/></div>
+                    <div style="font-weight: bold; text-align: center; padding: 5px; padding-top: 0px">STANICA PLANINARSKIH VODIČA<br/>VARAŽDIN</div>
+                    <div style="height: 1px; line-height: 1px; border-top: 1px solid #30B4FF"></div>
+                    <div class="menu" onclick="window.location='zupanije.aspx'">Županije</div>
+                    <div class="menu" onclick="window.location='mjesta.aspx'">Mjesta</div>
+                    <div class="menu" onclick="window.location='poste.aspx'">Pošte</div>
+                    <div style="height: 1px; line-height: 1px; border-top: 1px solid #30B4FF"></div>
+                    <div class="menu" onclick="window.location='udruge.aspx'">Udruge</div>
+                    <div style="height: 1px; line-height: 1px; border-top: 1px solid #30B4FF"></div>
+                    <div class="menu" onclick="window.location='standardi.aspx'">Standardi</div>
+                    <div style="height: 1px; line-height: 1px; border-top: 1px solid #30B4FF"></div>
+                    <div class="menu" onclick="window.location='tecajevi.aspx'">Tečajevi</div>
+                    <div class="menu" onclick="window.location='ispiti.aspx'">Ispiti</div>
+                    <div class="menu" onclick="window.location='vjezbe.aspx'">Vježbe</div>
+                    <div class="menu" onclick="window.location='izleti.aspx'">Izleti</div>
+                    <div style="height: 1px; line-height: 1px; border-top: 1px solid #30B4FF"></div>
+                    <div class="menu" onclick="window.location='vodici.aspx'">Vodiči</div>
+                    <div style="height: 1px; line-height: 1px; border-top: 1px solid #30B4FF"></div>
+                    <div class="menu" onclick="window.location='sintetika.aspx'">Sintetika</div>
+                    <% if (Session["nivo"] != null && Session["nivo"].ToString() == "0") { %>
+                    <div style="height: 1px; line-height: 1px; border-top: 1px solid #30B4FF"></div>
+                    <div class="menu" onclick="window.location='korisnici.aspx'">Korisnici</div>
+                    <div class="menu" onclick="window.location='log.aspx'">Log</div>
+                    <% } %>
+                    <div style="height: 1px; line-height: 1px; border-top: 1px solid #30B4FF"></div>
+                    <div class="menu" onclick="window.location='login.aspx'">Odjava</div>
+                    <div style="height: 1px; line-height: 1px; border-top: 1px solid #30B4FF"></div>
+                    <div class="menu" onclick="menu.style.display='none';menu_hid.style.display='table-cell'">&lt;&lt;&lt;</div>
+                </td>
+                <td id="menu_hid" style="background: #0094ff; width: 10px; display: none" onclick="menu_hid.style.display='none';menu.style.display='table-cell'">
+                </td>
+                <td style="height: 100%; background-color: #F9F9F9; padding: 20px">
+                    <asp:ContentPlaceHolder ID="cphGlavni" runat="server">
+                    </asp:ContentPlaceHolder>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <script>
+        var tables = document.getElementsByClassName('grid');
+        for (e = 0; e < tables.length; e++) {
+            var table = tables[e];
+            var row_cnt = table.rows.length;
+            for (i = row_cnt; i < 20; i++) {
+                var row = table.insertRow(table.rows.length);
+                for (j = 0; j < table.rows[0].cells.length; j++) {
+                    var cell = row.insertCell(0);
+                    if (i % 2 == 0) {
+                        cell.classList.add('altrow_no_hover');
+                    }
+                    else {
+                        cell.classList.add('row_no_hover');
+                    }
+                    cell.innerHTML = '&nbsp;';
+                }
+            }
+        }
+    </script>
+</body>
+</html>
